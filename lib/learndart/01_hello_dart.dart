@@ -6,6 +6,6 @@
  */
 
 void main(List<String> args) {
-  print(args); // 控制台输入 dart 01_hello_dart.dart a b c
+  print(args); // 控制台进入当前目录，执行命令：dart 01_hello_dart.dart a b c)
   print("Hello Dart");
 }
