@@ -22,8 +22,10 @@ void main(List<String> args) {
   var height = 1.88;
 
   var message1 = '姓名：$name, 年龄：$age, 身高：$height';
-  var message2 = '姓名：$age, 类型${age.runtimeType}'; // runtimeType 获取变量类型
+  var message2 = '姓名：$age, 类型：${age.runtimeType}'; // runtimeType 获取变量类型
+  var message3 = '姓名：' + name + ', 类型：' + age.toString();
 
   print(message1);
   print(message2);
+  print(message3);
 }
