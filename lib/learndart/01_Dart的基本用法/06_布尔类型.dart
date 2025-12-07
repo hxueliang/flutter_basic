@@ -4,8 +4,8 @@ void main(List<String> args) {
 
   // 条件判断
   if (isTrue) {
-    print('真');
+    print('真值');
   } else {
-    print('假');
+    print('假值');
   }
 }
