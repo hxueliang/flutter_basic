@@ -38,7 +38,7 @@ void main(List<String> args) {
   final date1 = DateTime.now();
   // const date2 = DateTime.now(); // error: Constant variables must be initialized with a constant value.
 
-  // 3.1 final 可以被赋值一次，赋值后不能被修改，但是可以在运行时确定值
+  // 3.1 final 可以被赋值一次，赋值后不能被修改，但是可以在运行时确定值（例如：文章发布时间）
   final p1 = Preson('hxl');
   final p2 = Preson('hxl');
   print(identical(p1, p2)); // false identical()判断两个对象是否是同一个对象
