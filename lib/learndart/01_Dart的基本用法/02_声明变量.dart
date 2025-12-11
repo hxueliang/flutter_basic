@@ -38,10 +38,13 @@ void main(List<String> args) {
   final date1 = DateTime.now();
   // const date2 = DateTime.now(); // error: Constant variables must be initialized with a constant value.
 
-  // 3.1 final 可以被赋值一次，赋值后不能被修改，但是可以在运行时确定值（例如：文章发布时间）
+  // 3.1 final 可以被赋值一次，赋值后不能被修改，但是可以在运行时确定值
   final p1 = Preson('hxl');
   final p2 = Preson('hxl');
   print(identical(p1, p2)); // false identical()判断两个对象是否是同一个对象
+  // 例如：文章发布时间
+  final d2 = DateTime.now();
+  // d2 = DateTime.now(); // error: The final variable 'd2' can only be set once.
 
   // 3.2 const 常量必须在编译时就确定值，不能被修改
   const p3 = Preson2('hxl'); // 可以赋值常量或常量表达式，此处赋值为常量构造函数
