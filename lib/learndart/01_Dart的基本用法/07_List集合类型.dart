@@ -48,4 +48,47 @@ void main(List<String> args) {
   list8[0] = '张三';
   list8[1] = '李四';
   print(list8);
+  print('\n');
+
+  // List类型的常用方法(上)
+  List list9 = ['张三', '李四', '王五'];
+  list9.add('赵6'); // 添加元素
+  list9.add('赵6'); // 添加元素
+  print('list9: $list9');
+  list9.addAll(['钱七', '孙八']); // 添加多个元素
+  print('list9: $list9');
+  list9.remove('赵6'); // 删除元素
+  print('list9: $list9');
+  list9.removeLast(); // 删除最后一个元素
+  print('list9: $list9');
+  list9.removeRange(1, 3); // 删除指定范围内的元（含头不含尾）
+  print('list9: $list9');
+  print('\n');
+
+  // List类型的常用方法(下)
+  List list10 = ['张33', '李四', '王55'];
+  list10.forEach((item) {
+    // 遍历List
+    print('forEach: $item');
+  });
+
+  var res = list10.every((item) {
+    return item.length > 1;
+  });
+  print('every: $res');
+
+  var res2 = list10.where((item) {
+    return item.length > 2;
+  });
+  print('where: $res2');
+  print('\n');
+
+  // List类型的常用属性
+  var list11 = ['张三', '李四', '王五'];
+  print('length: ${list11.length}'); // 获取List的长度
+  print('first: ${list11.first}'); // 获取List的第一个元素
+  print('last: ${list11.last}'); // 获取List的最后一个元素
+  print('isEmpty: ${list11.isEmpty}'); // 判断List是否为空
+  print('isNotEmpty: ${list11.isNotEmpty}'); // 判断List是否不为空
+  print('reversed: ${list11.reversed}'); // 反转List
 }
