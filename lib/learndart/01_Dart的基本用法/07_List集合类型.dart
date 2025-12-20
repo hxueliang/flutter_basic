@@ -81,6 +81,7 @@ void main(List<String> args) {
     return item.length > 2;
   });
   print('where: $res2');
+  print('where->toList: ${res2.toList()}');
   print('\n');
 
   // List类型的常用属性
