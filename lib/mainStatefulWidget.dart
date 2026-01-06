@@ -59,7 +59,15 @@ class _MyPageState extends State<MyPage> {
         home: Scaffold(
             appBar: AppBar(title: Text('有状态组件 appBar')),
             body: Container(
-              child: Center(child: Text('有状态组件 body')),
+              child: Center(
+                  child: GestureDetector(
+                      onTap: () {
+                        print('点击了Text');
+                      },
+                      onDoubleTap: () {
+                        print('双击Text');
+                      },
+                      child: Text('有状态组件 body'))),
             ),
             bottomNavigationBar: Container(
                 height: 80, child: Center(child: Text('有状态组件 bottom')))));
