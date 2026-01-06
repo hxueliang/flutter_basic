@@ -4,9 +4,16 @@ void main(List<String> args) {
   runApp(MainPage());
 }
 
-class MainPage extends StatelessWidget {
-  const MainPage({Key? key}) : super(key: key);
+class MainPage extends StatefulWidget {
+  MainPage({Key? key}) : super(key: key);
 
+  @override
+  _MainPageState createState() => _MainPageState();
+}
+
+class _MainPageState extends State<MainPage> {
+  TextEditingController _phoneController = TextEditingController();
+  TextEditingController _pwdController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -23,6 +30,7 @@ class MainPage extends StatelessWidget {
                 child: Column(
                   children: [
                     TextField(
+                      controller: _phoneController,
                       decoration: InputDecoration(
                           hintText: "请输入用户名",
                           contentPadding: EdgeInsets.only(left: 12),
@@ -36,6 +44,8 @@ class MainPage extends StatelessWidget {
                       height: 20,
                     ),
                     TextField(
+                      controller: _pwdController,
+                      obscureText: true,
                       decoration: InputDecoration(
                           hintText: "请输入密码",
                           contentPadding: EdgeInsets.only(left: 12),
@@ -55,20 +65,14 @@ class MainPage extends StatelessWidget {
                             borderRadius: BorderRadius.circular(10)),
                         height: 50,
                         child: TextButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              print(
+                                  "账号：${_phoneController.text}，密码：${_pwdController.text}");
+                            },
                             child: Text("登录",
                                 style: TextStyle(
                                     color: Colors.white, fontSize: 20))))
                   ],
                 ))));
-  }
-}
-
-class ImagePage extends StatelessWidget {
-  const ImagePage({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(home: Scaffold(appBar: AppBar(title: Text("Text 组件"))));
   }
 }
