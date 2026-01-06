@@ -7,6 +7,7 @@ void main(List<String> args) {
 class MyPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    print('无状态组件，生命周期方法build');
     return MaterialApp(
         title: '无状态组件',
         home: Scaffold(
