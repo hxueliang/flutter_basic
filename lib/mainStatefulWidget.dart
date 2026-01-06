@@ -59,16 +59,24 @@ class _MyPageState extends State<MyPage> {
         home: Scaffold(
             appBar: AppBar(title: Text('有状态组件 appBar')),
             body: Container(
-              child: Center(
-                  child: GestureDetector(
-                      onTap: () {
-                        print('点击了Text');
-                      },
-                      onDoubleTap: () {
-                        print('双击Text');
-                      },
-                      child: Text('有状态组件 body'))),
-            ),
+                child: Center(
+                    // child: GestureDetector(
+                    //     onTap: () {
+                    //       print('点击了Text');
+                    //     },
+                    //     onDoubleTap: () {
+                    //       print('双击Text');
+                    //     },
+                    //     child: Text('有状态组件 body'))),
+
+                    // 专用按钮组件： ElevatedButton、TextButton、OutlinedButton、FloatingActionButton
+                    // 视觉反馈组件：InkWell
+                    // 其他交互组件：IconButton、Switch、Checkbox、Radio
+                    child: TextButton(
+                        onPressed: () {
+                          print('点击了TextButton');
+                        },
+                        child: Text('按钮')))),
             bottomNavigationBar: Container(
                 height: 80, child: Center(child: Text('有状态组件 bottom')))));
   }
