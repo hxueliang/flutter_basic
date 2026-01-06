@@ -12,7 +12,7 @@ class MainPage extends StatelessWidget {
     return MaterialApp(
         home: Scaffold(
             appBar: AppBar(
-              title: Text("Wrap 组件"),
+              title: Text("Stack 组件"),
             ),
             body: Container(
                 color: Colors.amber,
