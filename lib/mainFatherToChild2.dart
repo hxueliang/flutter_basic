@@ -18,7 +18,7 @@ class _MainPageState extends State<MainPage> {
     return MaterialApp(
         home: Scaffold(
             appBar: AppBar(
-              title: Text("父传子安全"),
+              title: Text("父子组件通信"),
             ),
             body: GridView.count(
                 padding: EdgeInsets.all(10),
@@ -26,14 +26,28 @@ class _MainPageState extends State<MainPage> {
                 mainAxisSpacing: 10,
                 crossAxisSpacing: 10,
                 children: List.generate(_list.length, (index) {
-                  return ChildWidget(text: _list[index]);
+                  return ChildWidget(
+                    text: _list[index],
+                    index: index,
+                    onDelete: (int) {
+                      _list.removeAt(int);
+                      setState(() {});
+                    },
+                  );
                 }))));
   }
 }
 
 class ChildWidget extends StatefulWidget {
   final String text;
-  ChildWidget({Key? key, required this.text}) : super(key: key);
+  final int index;
+  final Function(int) onDelete;
+  ChildWidget(
+      {Key? key,
+      required this.text,
+      required this.index,
+      required this.onDelete})
+      : super(key: key);
 
   @override
   _ChildWidgetState createState() => _ChildWidgetState();
@@ -42,10 +56,23 @@ class ChildWidget extends StatefulWidget {
 class _ChildWidgetState extends State<ChildWidget> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: Colors.blue,
-      alignment: Alignment.center,
-      child: Text(widget.text),
+    return Stack(
+      alignment: Alignment.topRight,
+      children: [
+        Container(
+          color: Colors.blue,
+          alignment: Alignment.center,
+          child: Text(widget.text),
+        ),
+        IconButton(
+          icon: Icon(Icons.delete),
+          color: Colors.red,
+          onPressed: () {
+            print("删除${widget.index}");
+            widget.onDelete(widget.index);
+          },
+        )
+      ],
     );
   }
 }
