@@ -12,6 +12,8 @@ class MainPage extends StatefulWidget {
 }
 
 class _MainPageState extends State<MainPage> {
+  int _currentIndex = 0;
+  PageController _pageController = PageController();
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -21,14 +23,54 @@ class _MainPageState extends State<MainPage> {
             ),
             body: CustomScrollView(slivers: [
               SliverToBoxAdapter(
-                  child: Container(
-                alignment: Alignment.center,
-                height: 240,
-                color: Colors.blue,
-                child: Text(
-                  '轮播图',
-                  style: TextStyle(color: Colors.white, fontSize: 20),
-                ),
+                  child: Stack(
+                children: [
+                  Container(
+                    alignment: Alignment.center,
+                    height: 240,
+                    color: Colors.blue,
+                    child: PageView.builder(
+                        controller: _pageController,
+                        itemBuilder: (context, index) {
+                          return Container(
+                            alignment: Alignment.center,
+                            color: Colors.blue,
+                            child: Text('第${index + 1}个',
+                                style: TextStyle(
+                                    color: Colors.white, fontSize: 20)),
+                          );
+                        }),
+                  ),
+                  Positioned(
+                      bottom: 10,
+                      left: 0,
+                      right: 0,
+                      child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: List.generate(10, (index) {
+                            return GestureDetector(
+                              onTap: () {
+                                _pageController.animateToPage(
+                                  index,
+                                  duration: Duration(milliseconds: 300),
+                                  curve: Curves.linear,
+                                );
+                                _currentIndex = index;
+                                setState(() {});
+                              },
+                              child: Container(
+                                width: 10,
+                                height: 10,
+                                decoration: BoxDecoration(
+                                    color: _currentIndex == index
+                                        ? Colors.red
+                                        : Colors.white,
+                                    borderRadius: BorderRadius.circular(5)),
+                                margin: EdgeInsets.symmetric(horizontal: 5),
+                              ),
+                            );
+                          })))
+                ],
               )),
               SliverToBoxAdapter(child: SizedBox(height: 10)),
               SliverPersistentHeader(
@@ -82,6 +124,6 @@ class _SliverPersistentHeaderDelegate extends SliverPersistentHeaderDelegate {
   @override
   bool shouldRebuild(covariant SliverPersistentHeaderDelegate oldDelegate) {
     // TODO: implement shouldRebuild
-    throw false;
+    return false;
   }
 }
