@@ -31,8 +31,10 @@ class _ListPageState extends State<ListPage> {
             itemBuilder: (context, index) {
               return GestureDetector(
                 onTap: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => DetailPage()));
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => DetailPage(id: index + 1)));
                 },
                 child: Container(
                   height: 50,
@@ -47,7 +49,8 @@ class _ListPageState extends State<ListPage> {
 }
 
 class DetailPage extends StatefulWidget {
-  DetailPage({Key? key}) : super(key: key);
+  final int id;
+  DetailPage({Key? key, required this.id}) : super(key: key);
 
   @override
   _DetailPageState createState() => _DetailPageState();
@@ -57,7 +60,7 @@ class _DetailPageState extends State<DetailPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(title: Text("详情页")),
+        appBar: AppBar(title: Text("详情页${widget.id}")),
         body: Container(
           alignment: Alignment.center,
           child: TextButton(
