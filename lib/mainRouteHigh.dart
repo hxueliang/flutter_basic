@@ -24,6 +24,9 @@ class MainPage extends StatelessWidget {
               return MaterialPageRoute(builder: (context) => LoginPage());
             }
           }
+        },
+        onUnknownRoute: (settings) {
+          return MaterialPageRoute(builder: (context) => NotFound());
         });
   }
 }
@@ -39,15 +42,21 @@ class _GoodsListState extends State<GoodsList> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('商品列表')),
-      body: Container(
-          alignment: Alignment.center,
-          child: TextButton(
-              onPressed: () {
-                Navigator.pushNamed(context, '/cardList');
-              },
-              child: Text('加入购物车'))),
-    );
+        appBar: AppBar(title: Text('商品列表')),
+        body: Container(
+            alignment: Alignment.center,
+            child: Column(children: [
+              TextButton(
+                  onPressed: () {
+                    Navigator.pushNamed(context, '/cardList');
+                  },
+                  child: Text('加入购物车')),
+              TextButton(
+                  onPressed: () {
+                    Navigator.pushNamed(context, '/abc');
+                  },
+                  child: Text('abc')),
+            ])));
   }
 }
 
@@ -94,6 +103,29 @@ class _LoginPageState extends State<LoginPage> {
                 Navigator.pushNamed(context, '/CardList');
               },
               child: Text('登录'))),
+    );
+  }
+}
+
+class NotFound extends StatefulWidget {
+  NotFound({Key? key}) : super(key: key);
+
+  @override
+  _NotFoundState createState() => _NotFoundState();
+}
+
+class _NotFoundState extends State<NotFound> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: Text('NotFound')),
+      body: Container(
+          alignment: Alignment.center,
+          child: TextButton(
+              onPressed: () {
+                // Navigator.pushNamed(context, '/CardList');
+              },
+              child: Text('404'))),
     );
   }
 }
