@@ -38,7 +38,8 @@ class _ListPageState extends State<ListPage> {
             itemBuilder: (context, index) {
               return GestureDetector(
                 onTap: () {
-                  Navigator.pushNamed(context, '/detail');
+                  Navigator.pushNamed(context, '/detail',
+                      arguments: {"id": index + 1});
                 },
                 child: Container(
                   height: 50,
@@ -60,10 +61,26 @@ class DetailPage extends StatefulWidget {
 }
 
 class _DetailPageState extends State<DetailPage> {
+  String _id = "";
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    Future.microtask(() {
+      if (ModalRoute.of(context)!.settings.arguments != null) {
+        print(ModalRoute.of(context)!.settings.arguments);
+        Map<String, dynamic> arguments =
+            ModalRoute.of(context)!.settings.arguments as Map<String, dynamic>;
+        _id = arguments["id"].toString();
+        setState(() {});
+      }
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(title: Text("详情页")),
+        appBar: AppBar(title: Text("详情页$_id")),
         body: Container(
           alignment: Alignment.center,
           child: TextButton(
