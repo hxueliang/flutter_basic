@@ -13,7 +13,7 @@ class MySlider extends StatefulWidget {
 class _MySliderState extends State<MySlider> {
   @override
   Widget build(BuildContext context) {
-    return Stack(children: [_getBanner()]);
+    return Stack(children: [_getBanner(), _getSearch()]);
   }
 
   Widget _getBanner() {
@@ -35,5 +35,24 @@ class _MySliderState extends State<MySlider> {
             height: 300,
             viewportFraction: 1.0,
             autoPlayInterval: Duration(seconds: 5)));
+  }
+
+  Widget _getSearch() {
+    return Positioned(
+        top: 10,
+        left: 10,
+        right: 10,
+        child: Container(
+          height: 40,
+          padding: EdgeInsets.symmetric(horizontal: 16),
+          alignment: Alignment.centerLeft,
+          decoration: BoxDecoration(
+              color: Color.fromRGBO(0, 0, 0, 0.5),
+              borderRadius: BorderRadius.circular(20)),
+          child: Text(
+            "搜索...",
+            style: TextStyle(color: Colors.white, fontSize: 14),
+          ),
+        ));
   }
 }
