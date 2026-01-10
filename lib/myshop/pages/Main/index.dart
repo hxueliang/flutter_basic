@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_basic/myshop/pages/Cart/index.dart';
+import 'package:flutter_basic/myshop/pages/Home/index.dart';
+import 'package:flutter_basic/myshop/pages/Message/index.dart';
+import 'package:flutter_basic/myshop/pages/My/index.dart';
 
 class MainPage extends StatefulWidget {
   MainPage({Key? key}) : super(key: key);
@@ -34,11 +38,9 @@ class _MainPageState extends State<MainPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: Container(
-          child: Center(
-            child: Text('Main Page'),
-          ),
-        ),
+        body: SafeArea(
+            child:
+                IndexedStack(children: _getTabBarPage(), index: _currentIndex)),
         bottomNavigationBar: BottomNavigationBar(
           selectedItemColor: Colors.black,
           unselectedItemColor: Colors.grey,
@@ -67,5 +69,9 @@ class _MainPageState extends State<MainPage> {
           ),
           label: _items[index]['label']);
     });
+  }
+
+  List<Widget> _getTabBarPage() {
+    return [HomePage(), MessagePage(), CartPage(), MyPage()];
   }
 }
