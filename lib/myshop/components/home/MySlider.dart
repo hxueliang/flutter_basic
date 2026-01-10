@@ -77,7 +77,8 @@ class _MySliderState extends State<MySlider> {
                 onTap: () {
                   _carouselController.animateToPage(index);
                 },
-                child: Container(
+                child: AnimatedContainer(
+                  duration: const Duration(milliseconds: 300),
                   width: _currentIndex == index ? 40 : 20,
                   height: 6,
                   decoration: BoxDecoration(
