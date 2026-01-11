@@ -92,3 +92,102 @@ class CategoryItem {
     );
   }
 }
+
+/// 将《home.dart》和《热门推荐.json》拖动到AI侧边栏的@Builder输入框中
+/// 根据热门推荐json中的数据在home.dart中生成对应的类型文件 包含工厂转化函数
+
+class HotRecommendResult {
+  String id;
+  String title;
+  List<SubType> subTypes;
+  HotRecommendResult({
+    required this.id,
+    required this.title,
+    required this.subTypes,
+  });
+
+  factory HotRecommendResult.fromJson(Map<String, dynamic> json) {
+    return HotRecommendResult(
+      id: json['id'] ?? '',
+      title: json['title'] ?? '',
+      subTypes: (json['subTypes'] as List)
+          .map((e) => SubType.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+  }
+}
+
+class SubType {
+  String id;
+  String title;
+  GoodsItems goodsItems;
+  SubType({
+    required this.id,
+    required this.title,
+    required this.goodsItems,
+  });
+
+  factory SubType.fromJson(Map<String, dynamic> json) {
+    return SubType(
+      id: json['id'] ?? '',
+      title: json['title'] ?? '',
+      goodsItems:
+          GoodsItems.fromJson(json['goodsItems'] as Map<String, dynamic>),
+    );
+  }
+}
+
+class GoodsItems {
+  int counts;
+  int pageSize;
+  int pages;
+  int page;
+  List<GoodsItem> items;
+  GoodsItems({
+    required this.counts,
+    required this.pageSize,
+    required this.pages,
+    required this.page,
+    required this.items,
+  });
+
+  factory GoodsItems.fromJson(Map<String, dynamic> json) {
+    return GoodsItems(
+      counts: json['counts'] ?? 0,
+      pageSize: json['pageSize'] ?? 0,
+      pages: json['pages'] ?? 0,
+      page: json['page'] ?? 0,
+      items: (json['items'] as List)
+          .map((e) => GoodsItem.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+  }
+}
+
+class GoodsItem {
+  String id;
+  String name;
+  String? desc;
+  String price;
+  String picture;
+  int orderNum;
+  GoodsItem({
+    required this.id,
+    required this.name,
+    this.desc,
+    required this.price,
+    required this.picture,
+    required this.orderNum,
+  });
+
+  factory GoodsItem.fromJson(Map<String, dynamic> json) {
+    return GoodsItem(
+      id: json['id'] ?? '',
+      name: json['name'] ?? '',
+      desc: json['desc'],
+      price: json['price'] ?? '',
+      picture: json['picture'] ?? '',
+      orderNum: json['orderNum'] ?? 0,
+    );
+  }
+}

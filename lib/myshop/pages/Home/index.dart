@@ -30,6 +30,11 @@ class _HomePageState extends State<HomePage> {
     //         'https://img30.360buyimg.com/jdcms/s480x480_jfs/t1/243434/4/11282/91502/668280abFfcf8f2ff/1cd615a88e464bf1.jpg'),
   ];
   List<CategoryItem> _categoryList = [];
+  HotRecommendResult _hotRecommendResult = HotRecommendResult(
+    id: '',
+    title: '',
+    subTypes: [],
+  );
 
   @override
   void initState() {
@@ -37,6 +42,7 @@ class _HomePageState extends State<HomePage> {
     super.initState();
     _getBannerList();
     _getCategoryList();
+    _getHotRecommend();
   }
 
   _getBannerList() async {
@@ -46,6 +52,12 @@ class _HomePageState extends State<HomePage> {
 
   _getCategoryList() async {
     _categoryList = await getCategoryListApi();
+    setState(() {});
+  }
+
+  // 获取热门推荐
+  _getHotRecommend() async {
+    _hotRecommendResult = await getHotRecommendApi();
     setState(() {});
   }
 
@@ -60,7 +72,8 @@ class _HomePageState extends State<HomePage> {
       SliverToBoxAdapter(child: SizedBox(height: 10)),
       SliverToBoxAdapter(child: MyCategory(categoryList: _categoryList)),
       SliverToBoxAdapter(child: SizedBox(height: 10)),
-      SliverToBoxAdapter(child: MySuggestion()),
+      SliverToBoxAdapter(
+          child: MySuggestion(hotRecommendResult: _hotRecommendResult)),
       SliverToBoxAdapter(child: SizedBox(height: 10)),
       SliverToBoxAdapter(
           child: Padding(
