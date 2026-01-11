@@ -29,16 +29,23 @@ class _HomePageState extends State<HomePage> {
     //     imgUrl:
     //         'https://img30.360buyimg.com/jdcms/s480x480_jfs/t1/243434/4/11282/91502/668280abFfcf8f2ff/1cd615a88e464bf1.jpg'),
   ];
+  List<CategoryItem> _categoryList = [];
 
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
     _getBannerList();
+    _getCategoryList();
   }
 
   _getBannerList() async {
     _bannerList = await getBannerListApi();
+    setState(() {});
+  }
+
+  _getCategoryList() async {
+    _categoryList = await getCategoryListApi();
     setState(() {});
   }
 
@@ -51,7 +58,7 @@ class _HomePageState extends State<HomePage> {
     return [
       SliverToBoxAdapter(child: MySlider(bannerList: _bannerList)),
       SliverToBoxAdapter(child: SizedBox(height: 10)),
-      SliverToBoxAdapter(child: MyCategory()),
+      SliverToBoxAdapter(child: MyCategory(categoryList: _categoryList)),
       SliverToBoxAdapter(child: SizedBox(height: 10)),
       SliverToBoxAdapter(child: MySuggestion()),
       SliverToBoxAdapter(child: SizedBox(height: 10)),
