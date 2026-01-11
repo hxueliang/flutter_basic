@@ -23,3 +23,15 @@ Future<HotRecommendResult> getHotRecommendApi() async {
   return HotRecommendResult.fromJson(
       await dioRequest.get(HttpConstants.HOT_PREFERENCE));
 }
+
+// 获取热门榜单列表
+Future<HotRecommendResult> getHotInVogueApi() async {
+  return HotRecommendResult.fromJson(
+      await dioRequest.get(HttpConstants.HOT_INVOUGE));
+}
+
+// 获取热门一站式列表
+Future<HotRecommendResult> getHotOneStopApi() async {
+  return HotRecommendResult.fromJson(
+      await dioRequest.get(HttpConstants.HOT_ONE_STOP));
+}

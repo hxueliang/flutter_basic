@@ -35,6 +35,16 @@ class _HomePageState extends State<HomePage> {
     title: '',
     subTypes: [],
   );
+  HotRecommendResult _hotInVogueResult = HotRecommendResult(
+    id: '',
+    title: '',
+    subTypes: [],
+  );
+  HotRecommendResult _hotOneStopResult = HotRecommendResult(
+    id: '',
+    title: '',
+    subTypes: [],
+  );
 
   @override
   void initState() {
@@ -43,6 +53,8 @@ class _HomePageState extends State<HomePage> {
     _getBannerList();
     _getCategoryList();
     _getHotRecommend();
+    _getHotInVogue();
+    _getHotOneStop();
   }
 
   _getBannerList() async {
@@ -58,6 +70,18 @@ class _HomePageState extends State<HomePage> {
   // 获取热门推荐
   _getHotRecommend() async {
     _hotRecommendResult = await getHotRecommendApi();
+    setState(() {});
+  }
+
+  // 获取热门推荐
+  _getHotInVogue() async {
+    _hotInVogueResult = await getHotInVogueApi();
+    setState(() {});
+  }
+
+  // 获取热门推荐
+  _getHotOneStop() async {
+    _hotOneStopResult = await getHotOneStopApi();
     setState(() {});
   }
 
@@ -81,9 +105,11 @@ class _HomePageState extends State<HomePage> {
               child: Flex(
                 direction: Axis.horizontal,
                 children: [
-                  Expanded(child: MyHot()),
+                  Expanded(
+                      child: MyHot(result: _hotInVogueResult, type: 'inVogue')),
                   SizedBox(width: 10),
-                  Expanded(child: MyHot()),
+                  Expanded(
+                      child: MyHot(result: _hotOneStopResult, type: 'oneStop')),
                 ],
               ))),
       SliverToBoxAdapter(child: SizedBox(height: 10)),
